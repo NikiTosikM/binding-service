@@ -37,3 +37,6 @@ class Settings(BaseSettings):
     
     uv: UvicornConfig
     redis: RedisConfig
+
+
+settings = Settings()
