@@ -1,10 +1,10 @@
-from redis.asyncio import Redis
+from redis import Redis
 
 from src.datamappers.redis_datamapper import RedisDataMapper
 
 
-class RedisManager:
-    """Менежджер для работы с Redis"""
+class RedisRepository:
+    """ Репозиторий для работы с Redis"""
     
     datamapper: RedisDataMapper
     
@@ -17,10 +17,14 @@ class RedisManager:
         
         await self.aclient.set(f"phone:{phone}:address", address)
         
-    async def get_key(self, phone: str) -> str:
+    async def get_value(self, phone: str) -> str | None:
         """ Получение значения по ключу """
         
-        responce: bytes = await self.aclient.get(f"phone:{phone}:address")
+        responce: bytes | None = await self.aclient.get(f"phone:{phone}:address")
+        
+        if not responce:
+            return None
+        
         client_address: str = self.datamapper.to_entity(redis_data=responce)
         
         return client_address
@@ -31,6 +35,5 @@ class RedisManager:
         await self.create_an_entry(phone, address)
     
     async def delete(self, phone: str) -> None:
+        """ Удаляет значение """
         await self.aclient.delete(f"phone:{phone}:address")
-        
-    
