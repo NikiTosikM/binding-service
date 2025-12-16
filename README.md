@@ -4,7 +4,6 @@
 - создаем файл .env в корне проекта (можно скопировать из .env.template)
 - создаем образ приложения - docker build . -t contact-app:latest
 - запускаем приложение - docker-compose up --build
-- **Pydantic** - валидация данных
 
 ## Архитектура
 - **FastAPI** - REST API
