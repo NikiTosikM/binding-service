@@ -1,0 +1,26 @@
+services:
+  redis:
+    image: redis:8.2
+    container_name: redis
+    volumes:
+      - redis-data:/var/lib/redis/data
+    networks:
+      - app-network
+  
+  binding-app:
+    image: contact-app:latest
+    container_name: app
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    networks:
+      - app-network
+    depends_on:
+      - redis
+
+networks:
+  app-network:
+    driver: bridge
+volumes:
+  redis-data:

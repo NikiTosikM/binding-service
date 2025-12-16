@@ -16,7 +16,7 @@ app = create_app()
 if __name__ == "__main__":
     uvicorn.run(
         app="src.main:app",
-        host=settings.uv.host,
-        port=settings.uv.port,
-        reload=settings.uv.reload
+        host=settings.uvicorn.host,
+        port=settings.uvicorn.port,
+        reload=settings.uvicorn.reload
     )

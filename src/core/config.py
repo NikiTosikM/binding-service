@@ -35,7 +35,7 @@ class Settings(BaseSettings):
         env_nested_delimiter="__",
     )
     
-    uv: UvicornConfig
+    uvicorn: UvicornConfig
     redis: RedisConfig
 
 
