@@ -7,7 +7,7 @@ from src.schemas.phone_address import PhoneAddressSchema, AddressSchema
 
 
 router = APIRouter(
-    prefix="/contacts",
+    prefix="/api/contacts",
     tags=["Работа с данными клиента"],
     default_response_class=ORJSONResponse,
 )
