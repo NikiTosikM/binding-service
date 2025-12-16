@@ -25,7 +25,7 @@ class RedisConfig(BaseModel):
 
     @property
     def get_redis_url(self):
-        return f"redis://{self.host}:{self.port}"
+        return f"redis://{self.host}:{self.port}/{self.db}"
 
 
 class Settings(BaseSettings):

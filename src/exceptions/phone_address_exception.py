@@ -1,4 +1,4 @@
-from src.exceptions.server_expection import BaseException
+from src.exceptions.server_exception import BaseException
 
 
 class PhoneNotFound(BaseException):
@@ -6,3 +6,6 @@ class PhoneNotFound(BaseException):
     
 class PhoneNumberAlreadyLinked(BaseException):
     """ Данный номер телефона уже првязан """
+    
+class PhoneFormatNotCorrect(BaseException):
+    """ Формат номера телефона неверный """

@@ -32,6 +32,7 @@ async def get_client_address(phone_number: str, rd_client: RedisClientDep):
 @router.post(
     "/",
     description="Привязываем адрес к номеру телефона",
+    status_code=201,
     responses={
         201: {"description": "Запись создана"},
         409: {"description": "Нельзя привязать два адреса к одному номеру телефона"}
@@ -64,7 +65,7 @@ async def update_address(
 ):
     contract_service = ContactService(redis_client=rd_client)
 
-    client_contacts = PhoneAddressSchema(phone=phone_number, address=address)
+    client_contacts = PhoneAddressSchema(phone=phone_number, address=address.address)
 
     await contract_service.update_address(data=client_contacts)
 
@@ -74,8 +75,9 @@ async def update_address(
 @router.delete(
     "/{phone_number}", 
     description="Удаляем контакты клиента",
+    status_code=204,
     responses={
-        204: {"description": "Запись обновлена"},
+        204: {"description": "Запись удалена"},
         404: {"description": "Данный номер телефона не зарегистрирован"}
     }
 )

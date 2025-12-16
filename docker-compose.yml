@@ -2,6 +2,8 @@ services:
   redis:
     image: redis:8.2
     container_name: redis
+    ports:
+      - 6000:6379
     volumes:
       - redis-data:/var/lib/redis/data
     networks:

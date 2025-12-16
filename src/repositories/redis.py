@@ -6,7 +6,7 @@ from src.datamappers.redis_datamapper import RedisDataMapper
 class RedisRepository:
     """ Репозиторий для работы с Redis"""
     
-    datamapper: RedisDataMapper
+    datamapper = RedisDataMapper
     
 
     def __init__(self, client: Redis):

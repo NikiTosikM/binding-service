@@ -4,6 +4,7 @@ from typing import AsyncGenerator
 from redis.asyncio import Redis, ConnectionPool, ConnectionError
 
 from src.core.config import settings
+from src.exceptions.server_except_handler import server_error_handler
 
 
 class RedisCore:
@@ -28,7 +29,7 @@ class RedisCore:
 
             yield client
         except ConnectionError:
-            pass
+            raise server_error_handler
         finally:
             await client.aclose()
 
@@ -47,4 +48,4 @@ class RedisCore:
             request_ping: bool = await client.ping()
 
         if not request_ping:
-            pass
+            raise server_error_handler

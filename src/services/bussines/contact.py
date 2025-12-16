@@ -26,6 +26,7 @@ class ContactService:
 
         phone, address = data.phone, data.address
         verify_existence_phone_number = await self._repository.get_value(phone)
+        
         if verify_existence_phone_number:
             raise PhoneNumberAlreadyLinked
 
@@ -34,8 +35,9 @@ class ContactService:
     async def get_address_by_phone(self, phone: str) -> str:
         """Получаем адрес по номеру телефона"""
 
-        address: str = await self._repository.get_value(phone)
         await self.verify_existence_phone_number(phone)
+
+        address: str = await self._repository.get_value(phone)
 
         return address
 
